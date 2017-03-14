@@ -1,17 +1,15 @@
-package br.com.tresmaria.entity;
+package br.com.tresmaria.ws.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-@Entity(name="Sexo")
-public class Sexo {
+@Entity
+public class Servico {
 
 	@javax.persistence.Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long Id;
-	
-	private char Sigla;
 	
 	private String Descricao;
 
@@ -23,14 +21,6 @@ public class Sexo {
 		Id = id;
 	}
 
-	public char getSigla() {
-		return Sigla;
-	}
-
-	public void setSigla(char sigla) {
-		Sigla = sigla;
-	}
-
 	public String getDescricao() {
 		return Descricao;
 	}
@@ -39,6 +29,6 @@ public class Sexo {
 		Descricao = descricao;
 	}
 	
-	public Sexo() {
+	public Servico() {
 	}
 }

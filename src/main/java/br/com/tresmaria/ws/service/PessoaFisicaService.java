@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tresmaria.entity.PessoaFisica;
+import br.com.tresmaria.ws.entity.PessoaFisica;
 import br.com.tresmaria.ws.repository.PessoaFisicaRepository;
 
 @Service

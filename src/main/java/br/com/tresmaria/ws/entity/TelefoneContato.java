@@ -1,4 +1,4 @@
-package br.com.tresmaria.entity;
+package br.com.tresmaria.ws.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

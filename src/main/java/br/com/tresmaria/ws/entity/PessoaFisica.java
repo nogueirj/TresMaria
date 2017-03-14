@@ -1,4 +1,4 @@
-package br.com.tresmaria.entity;
+package br.com.tresmaria.ws.entity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="PessoaJuridica")
-public class PessoaJuridica {
+@Table(name="PessoaFisica")
+public class PessoaFisica {
 
 	@Id
 	@Basic(optional=false)
@@ -22,54 +22,64 @@ public class PessoaJuridica {
 	
 	@Basic(optional=false)
 	@NotNull
-	@Size(min=1, max=300)
-	@Column(name="NomeFantasia")
-	private String NomeFantasia;
+	@Size(min=1, max=350)
+	@Column(name="Nome")
+	private String Nome;
+	
+	@Size(max=10)
+	@Column(name="RG")
+	private String RG;
 	
 	@Basic(optional=false)
 	@NotNull
-	@Size(min=1, max=14)
-	private String CNPJ;
-	
-	@Size(max=19)
-	@Column(name="IncricaoEstadual")
-	private String IncricaoEstadual;
+	@Size(min=1, max=11)
+	@Column(name="CPF")
+	private String CPF;
 	
 	@OneToOne(optional=false)
 	@JoinColumn(name="Id", referencedColumnName="Id", insertable=false, updatable=false)
 	private Pessoa pessoa;
-	
+
 	public Long getId() {
 		return Id;
 	}
+
 	public void setId(Long id) {
 		Id = id;
 	}
-	public String getNomeFantasia() {
-		return NomeFantasia;
+
+	public String getNome() {
+		return Nome;
 	}
-	public void setNomeFantasia(String nomeFantasia) {
-		NomeFantasia = nomeFantasia;
+
+	public void setNome(String nome) {
+		Nome = nome;
 	}
-	public String getCNPJ() {
-		return CNPJ;
+
+	public String getRG() {
+		return RG;
 	}
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+
+	public void setRG(String rG) {
+		RG = rG;
 	}
-	public String getIncricaoEstadual() {
-		return IncricaoEstadual;
+
+	public String getCPF() {
+		return CPF;
 	}
-	public void setIncricaoEstadual(String incricaoEstadual) {
-		IncricaoEstadual = incricaoEstadual;
+
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
+
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
+
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
 	
-	public PessoaJuridica() {
+	public PessoaFisica() {
 	}
 }

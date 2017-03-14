@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tresmaria.entity.Sexo;
+import br.com.tresmaria.ws.entity.Sexo;
 import br.com.tresmaria.ws.repository.SexoRepository;
 
 @Service

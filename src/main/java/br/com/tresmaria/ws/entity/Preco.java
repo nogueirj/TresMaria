@@ -1,4 +1,4 @@
-package br.com.tresmaria.entity;
+package br.com.tresmaria.ws.entity;
 
 import java.util.Date;
 
@@ -10,14 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Contato")
-public class Contato {
+public class Preco {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,16 +23,19 @@ public class Contato {
 	@Column(name="Id")
 	private Long Id;
 	
+	@JoinColumn(name="IdServico", referencedColumnName="Id")
+	@ManyToOne(optional=false)
+	private Servico IdServico;
+	
 	@Basic(optional=false)
 	@NotNull
-	@Column(name="DataHoraContato")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date DataHoraContato;
-	
-	@JoinColumn(name="IdTelefoneContato", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private TelefoneContato IdTelefoneContato;
+	@Column(name="Valor")
+	private Double Valor;
 
+	@Column(name="DataHoraCadastro")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date DataHoraCadastro;
+	
 	public Long getId() {
 		return Id;
 	}
@@ -43,22 +44,22 @@ public class Contato {
 		Id = id;
 	}
 
-	public Date getDataHoraContato() {
-		return DataHoraContato;
+	public Servico getIdServico() {
+		return IdServico;
 	}
 
-	public void setDataHoraContato(Date dataHoraContato) {
-		DataHoraContato = dataHoraContato;
+	public void setIdServico(Servico idServico) {
+		IdServico = idServico;
 	}
 
-	public TelefoneContato getIdTelefoneContato() {
-		return IdTelefoneContato;
+	public Double getPreco() {
+		return Valor;
 	}
 
-	public void setIdTelefoneContato(TelefoneContato idTelefoneContato) {
-		IdTelefoneContato = idTelefoneContato;
+	public void setPreco(Double valor) {
+		Valor = valor;
 	}
 	
-	public Contato() {
+	public Preco() {
 	}
 }

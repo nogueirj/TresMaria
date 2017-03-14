@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tresmaria.entity.Preco;
+import br.com.tresmaria.ws.entity.Preco;
 import br.com.tresmaria.ws.repository.PrecoRepository;
 
 @Service
