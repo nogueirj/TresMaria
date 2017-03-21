@@ -1,5 +1,6 @@
 package br.com.tresmaria.ws.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Basic;
@@ -15,7 +16,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-public class Servico {
+public class Servico implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id

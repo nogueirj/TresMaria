@@ -1,5 +1,7 @@
 package br.com.tresmaria.ws.entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -17,7 +19,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Preco")
-public class Preco {
+public class Preco implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id

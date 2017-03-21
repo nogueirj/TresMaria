@@ -1,5 +1,7 @@
 package br.com.tresmaria.ws.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="PessoaFisica")
-public class PessoaFisica {
+public class PessoaFisica implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -1,5 +1,6 @@
 package br.com.tresmaria.ws.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Basic;
@@ -15,10 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="Cidade")
-public class Cidade {
+public class Cidade implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
