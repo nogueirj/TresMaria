@@ -14,62 +14,104 @@ import javax.validation.constraints.Size;
 @Table(name="PessoaJuridica")
 public class PessoaJuridica {
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Basic(optional=false)
+	@Basic(optional = false)
 	@NotNull
-	@Column(name="Id")
-	private Long Id;
-	
-	@Basic(optional=false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=300)
-	@Column(name="NomeFantasia")
-	private String NomeFantasia;
-	
-	@Basic(optional=false)
+	@Size(min = 1, max = 300)
+	@Column(name = "NomeFantasia")
+	private String nomeFantasia;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=14)
-	private String CNPJ;
-	
-	@Size(max=19)
-	@Column(name="IncricaoEstadual")
-	private String IncricaoEstadual;
-	
-	@OneToOne(optional=false)
-	@JoinColumn(name="Id", referencedColumnName="Id", insertable=false, updatable=false)
+	@Size(min = 1, max = 14)
+	@Column(name = "CNPJ")
+	private String cnpj;
+	@Size(max = 19)
+	@Column(name = "IncricaoEstadual")
+	private String incricaoEstadual;
+	@JoinColumn(name = "Id", referencedColumnName = "Id", insertable = false, updatable = false)
+	@OneToOne(optional = false)
 	private Pessoa pessoa;
-	
-	public Long getId() {
-		return Id;
-	}
-	public void setId(Long id) {
-		Id = id;
-	}
-	public String getNomeFantasia() {
-		return NomeFantasia;
-	}
-	public void setNomeFantasia(String nomeFantasia) {
-		NomeFantasia = nomeFantasia;
-	}
-	public String getCNPJ() {
-		return CNPJ;
-	}
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
-	}
-	public String getIncricaoEstadual() {
-		return IncricaoEstadual;
-	}
-	public void setIncricaoEstadual(String incricaoEstadual) {
-		IncricaoEstadual = incricaoEstadual;
-	}
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	
+
 	public PessoaJuridica() {
+	}
+
+	public PessoaJuridica(Long id) {
+			this.id = id;
+	}
+
+	public PessoaJuridica(Long id, String nomeFantasia, String cnpj) {
+			this.id = id;
+			this.nomeFantasia = nomeFantasia;
+			this.cnpj = cnpj;
+	}
+
+	public Long getId() {
+			return id;
+	}
+
+	public void setId(Long id) {
+			this.id = id;
+	}
+
+	public String getNomeFantasia() {
+			return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+			this.nomeFantasia = nomeFantasia;
+	}
+
+	public String getCnpj() {
+			return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+			this.cnpj = cnpj;
+	}
+
+	public String getIncricaoEstadual() {
+			return incricaoEstadual;
+	}
+
+	public void setIncricaoEstadual(String incricaoEstadual) {
+			this.incricaoEstadual = incricaoEstadual;
+	}
+
+	public Pessoa getPessoa() {
+			return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+			this.pessoa = pessoa;
+	}
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof PessoaJuridica)) {
+					return false;
+			}
+			PessoaJuridica other = (PessoaJuridica) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.PessoaJuridica[ id=" + id + " ]";
 	}
 }

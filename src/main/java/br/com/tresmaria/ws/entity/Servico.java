@@ -17,58 +17,90 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 public class Servico {
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="Id")
-	private Long Id;
-	
-	@Basic(optional=false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max = 300)
-	@Column(name="Descricao")
-	private String Descricao;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="IdServico")
+	@Size(min = 1, max = 300)
+	@Column(name = "Descricao")
+	private String descricao;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idServico")
 	private Collection<ContatoXServico> contatoXServicoCollection;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="IdServico")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idServico")
 	private Collection<Preco> precoCollection;
+
+	public Servico() {
+	}
+
+	public Servico(Long id) {
+			this.id = id;
+	}
+
+	public Servico(Long id, String descricao) {
+			this.id = id;
+			this.descricao = descricao;
+	}
+
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
 	}
 
 	public String getDescricao() {
-		return Descricao;
+			return descricao;
 	}
 
 	public void setDescricao(String descricao) {
-		Descricao = descricao;
+			this.descricao = descricao;
 	}
-	
-	
+
 	@XmlTransient
 	public Collection<ContatoXServico> getContatoXServicoCollection() {
-		return contatoXServicoCollection;
+			return contatoXServicoCollection;
 	}
-	
+
 	public void setContatoXServicoCollection(Collection<ContatoXServico> contatoXServicoCollection) {
-		this.contatoXServicoCollection = contatoXServicoCollection;
+			this.contatoXServicoCollection = contatoXServicoCollection;
 	}
-	
+
 	@XmlTransient
 	public Collection<Preco> getPrecoCollection() {
-		return precoCollection;
+			return precoCollection;
 	}
 
 	public void setPrecoCollection(Collection<Preco> precoCollection) {
-		this.precoCollection = precoCollection;
+			this.precoCollection = precoCollection;
 	}
 
-	public Servico() {
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof Servico)) {
+					return false;
+			}
+			Servico other = (Servico) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.Servico[ id=" + id + " ]";
 	}
 }

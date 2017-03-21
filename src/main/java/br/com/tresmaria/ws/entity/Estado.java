@@ -18,85 +18,120 @@ import javax.validation.constraints.Size;
 @Table(name="Estado")
 public class Estado {
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Basic(optional=false)
-	@Column(name="Id")
-	private Long Id;
-	
-	@Basic(optional=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
 	@NotNull
-	@Column(name="CodigoUF")
-	private Long CodigoUF;
-	
-	@Basic(optional=false)
+	@Column(name = "CodigoUF")
+	private long codigoUF;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=200)
-	@Column(name="Nome")
-	private String Nome;
-	
-	@Basic(optional=false)
+	@Size(min = 1, max = 200)
+	@Column(name = "Nome")
+	private String nome;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=2)
-	@Column(name="UF")
-	private String UF;
-	
-	@Basic(optional=false)
+	@Size(min = 1, max = 2)
+	@Column(name = "UF")
+	private String uf;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=100)
-	private String Regiao;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="IdEstado")
+	@Size(min = 1, max = 100)
+	@Column(name = "Regiao")
+	private String regiao;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstado")
 	private Collection<Cidade> cidadeCollection;
 
+	public Estado() {
+	}
+
+	public Estado(Long id) {
+			this.id = id;
+	}
+
+	public Estado(Long id, long codigoUF, String nome, String uf, String regiao) {
+			this.id = id;
+			this.codigoUF = codigoUF;
+			this.nome = nome;
+			this.uf = uf;
+			this.regiao = regiao;
+	}
+
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
 	}
 
-	public Long getCodigoUF() {
-		return CodigoUF;
+	public long getCodigoUF() {
+			return codigoUF;
 	}
 
-	public void setCodigoUF(Long codigoUF) {
-		CodigoUF = codigoUF;
+	public void setCodigoUF(long codigoUF) {
+			this.codigoUF = codigoUF;
 	}
 
 	public String getNome() {
-		return Nome;
+			return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+			this.nome = nome;
 	}
 
-	public String getUF() {
-		return UF;
+	public String getUf() {
+			return uf;
 	}
 
-	public void setUF(String uF) {
-		UF = uF;
+	public void setUf(String uf) {
+			this.uf = uf;
 	}
 
 	public String getRegiao() {
-		return Regiao;
+			return regiao;
 	}
 
 	public void setRegiao(String regiao) {
-		Regiao = regiao;
+			this.regiao = regiao;
 	}
 
+	@XmlTransient
 	public Collection<Cidade> getCidadeCollection() {
-		return cidadeCollection;
+			return cidadeCollection;
 	}
 
 	public void setCidadeCollection(Collection<Cidade> cidadeCollection) {
-		this.cidadeCollection = cidadeCollection;
+			this.cidadeCollection = cidadeCollection;
 	}
-	
-	public Estado() {
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof Estado)) {
+					return false;
+			}
+			Estado other = (Estado) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.Estado[ id=" + id + " ]";
 	}
 }

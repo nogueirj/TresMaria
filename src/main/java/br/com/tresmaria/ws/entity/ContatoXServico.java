@@ -13,45 +13,73 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ContatoXServico")
 public class ContatoXServico {
-	
+
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Basic(optional=false)
-	@Column(name="Id")
-	private Long Id;
-	
-	@JoinColumn(name="IdContato", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private Contato IdContato;
-	
-	@JoinColumn(name="IdServico", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private Servico IdServico;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "Id")
+	private Long id;
+	@JoinColumn(name = "IdContato", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private Contato idContato;
+	@JoinColumn(name = "IdServico", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private Servico idServico;
+
+	public ContatoXServico() {
+	}
+
+	public ContatoXServico(Long id) {
+			this.id = id;
+	}
 
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
 	}
 
 	public Contato getIdContato() {
-		return IdContato;
+			return idContato;
 	}
 
-	public void setIdPreco(Contato idContato) {
-		IdContato = idContato;
+	public void setIdContato(Contato idContato) {
+			this.idContato = idContato;
 	}
 
 	public Servico getIdServico() {
-		return IdServico;
+			return idServico;
 	}
 
 	public void setIdServico(Servico idServico) {
-		IdServico = idServico;
+			this.idServico = idServico;
 	}
-	
-	public ContatoXServico() {
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof ContatoXServico)) {
+					return false;
+			}
+			ContatoXServico other = (ContatoXServico) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.ContatoXServico[ id=" + id + " ]";
 	}
 }

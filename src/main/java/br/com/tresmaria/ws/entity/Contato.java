@@ -18,47 +18,90 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="Contato")
 public class Contato {
-
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Basic(optional=false)
-	@Column(name="Id")
-	private Long Id;
-	
-	@Basic(optional=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
 	@NotNull
-	@Column(name="DataHoraContato")
+	@Column(name = "DataHoraContato")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date DataHoraContato;
-	
-	@JoinColumn(name="IdTelefoneContato", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private TelefoneContato IdTelefoneContato;
+	private Date dataHoraContato;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idContato")
+	private Collection<ContatoXServico> contatoXServicoCollection;
+	@JoinColumn(name = "IdTelefoneContato", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private TelefoneContato idTelefoneContato;
+
+	public Contato() {
+	}
+
+	public Contato(Long id) {
+			this.id = id;
+	}
+
+	public Contato(Long id, Date dataHoraContato) {
+			this.id = id;
+			this.dataHoraContato = dataHoraContato;
+	}
 
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
 	}
 
 	public Date getDataHoraContato() {
-		return DataHoraContato;
+			return dataHoraContato;
 	}
 
 	public void setDataHoraContato(Date dataHoraContato) {
-		DataHoraContato = dataHoraContato;
+			this.dataHoraContato = dataHoraContato;
+	}
+
+	@XmlTransient
+	public Collection<ContatoXServico> getContatoXServicoCollection() {
+			return contatoXServicoCollection;
+	}
+
+	public void setContatoXServicoCollection(Collection<ContatoXServico> contatoXServicoCollection) {
+			this.contatoXServicoCollection = contatoXServicoCollection;
 	}
 
 	public TelefoneContato getIdTelefoneContato() {
-		return IdTelefoneContato;
+			return idTelefoneContato;
 	}
 
 	public void setIdTelefoneContato(TelefoneContato idTelefoneContato) {
-		IdTelefoneContato = idTelefoneContato;
+			this.idTelefoneContato = idTelefoneContato;
 	}
-	
-	public Contato() {
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof Contato)) {
+					return false;
+			}
+			Contato other = (Contato) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.Contato[ id=" + id + " ]";
 	}
 }

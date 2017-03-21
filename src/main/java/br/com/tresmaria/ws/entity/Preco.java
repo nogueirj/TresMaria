@@ -10,56 +10,102 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="Preco")
 public class Preco {
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Basic(optional=false)
-	@Column(name="Id")
-	private Long Id;
-	
-	@JoinColumn(name="IdServico", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private Servico IdServico;
-	
-	@Basic(optional=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "Id")
+	private Long id;
+	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+	@Basic(optional = false)
 	@NotNull
-	@Column(name="Valor")
-	private Double Valor;
-
-	@Column(name="DataHoraCadastro")
+	@Column(name = "Valor")
+	private BigDecimal valor;
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "DataHoraCadastro")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date DataHoraCadastro;
-	
+	private Date dataHoraCadastro;
+	@JoinColumn(name = "IdServico", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private Servico idServico;
+
+	public Preco() {
+	}
+
+	public Preco(Long id) {
+			this.id = id;
+	}
+
+	public Preco(Long id, BigDecimal valor, Date dataHoraCadastro) {
+			this.id = id;
+			this.valor = valor;
+			this.dataHoraCadastro = dataHoraCadastro;
+	}
+
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
+	}
+
+	public BigDecimal getValor() {
+			return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+			this.valor = valor;
+	}
+
+	public Date getDataHoraCadastro() {
+			return dataHoraCadastro;
+	}
+
+	public void setDataHoraCadastro(Date dataHoraCadastro) {
+			this.dataHoraCadastro = dataHoraCadastro;
 	}
 
 	public Servico getIdServico() {
-		return IdServico;
+			return idServico;
 	}
 
 	public void setIdServico(Servico idServico) {
-		IdServico = idServico;
+			this.idServico = idServico;
 	}
 
-	public Double getPreco() {
-		return Valor;
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
 	}
 
-	public void setPreco(Double valor) {
-		Valor = valor;
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof Preco)) {
+					return false;
+			}
+			Preco other = (Preco) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
 	}
-	
-	public Preco() {
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.Preco[ id=" + id + " ]";
 	}
 }

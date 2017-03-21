@@ -20,83 +20,115 @@ import javax.validation.constraints.Size;
 @Table(name="Endereco")
 public class Endereco {
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Basic(optional=false)
-	@Column(name="Id")
-	private Long Id;
-	
-	@Basic(optional=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=300)
-	@Column(name="Logradouro")
-	private String Logradouro;
-	
-	@Basic(optional=false)
+	@Size(min = 1, max = 300)
+	@Column(name = "Logradouro")
+	private String logradouro;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=10)
-	@Column(name="Numero")
-	private String Numero;
-	
-	@Size(max=100)
-	@Column(name="Complemento")
-	private String Complemento;
-	
-	@JoinColumn(name="IdCidade", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private Cidade IdCidade;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="IdEndereco")
+	@Size(min = 1, max = 10)
+	@Column(name = "Numero")
+	private String numero;
+	@Size(max = 100)
+	@Column(name = "Complemento")
+	private String complemento;
+	@JoinColumn(name = "IdCidade", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private Cidade idCidade;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idEndereco")
 	private Collection<Pessoa> pessoaCollection;
 
+	public Endereco() {
+	}
+
+	public Endereco(Long id) {
+			this.id = id;
+	}
+
+	public Endereco(Long id, String logradouro, String numero) {
+			this.id = id;
+			this.logradouro = logradouro;
+			this.numero = numero;
+	}
+
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
 	}
 
 	public String getLogradouro() {
-		return Logradouro;
+			return logradouro;
 	}
 
 	public void setLogradouro(String logradouro) {
-		Logradouro = logradouro;
+			this.logradouro = logradouro;
 	}
 
 	public String getNumero() {
-		return Numero;
+			return numero;
 	}
 
 	public void setNumero(String numero) {
-		Numero = numero;
+			this.numero = numero;
 	}
 
 	public String getComplemento() {
-		return Complemento;
+			return complemento;
 	}
 
 	public void setComplemento(String complemento) {
-		Complemento = complemento;
+			this.complemento = complemento;
 	}
 
 	public Cidade getIdCidade() {
-		return IdCidade;
+			return idCidade;
 	}
 
 	public void setIdCidade(Cidade idCidade) {
-		IdCidade = idCidade;
+			this.idCidade = idCidade;
 	}
 
+	@XmlTransient
 	public Collection<Pessoa> getPessoaCollection() {
-		return pessoaCollection;
+			return pessoaCollection;
 	}
 
 	public void setPessoaCollection(Collection<Pessoa> pessoaCollection) {
-		this.pessoaCollection = pessoaCollection;
+			this.pessoaCollection = pessoaCollection;
 	}
-	
-	public Endereco() {
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof Endereco)) {
+					return false;
+			}
+			Endereco other = (Endereco) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.Endereco[ id=" + id + " ]";
 	}
 }

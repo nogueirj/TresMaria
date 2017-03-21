@@ -14,72 +14,104 @@ import javax.validation.constraints.Size;
 @Table(name="PessoaFisica")
 public class PessoaFisica {
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Basic(optional=false)
+	@Basic(optional = false)
 	@NotNull
-	@Column(name="Id")
-	private Long Id;
-	
-	@Basic(optional=false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=350)
-	@Column(name="Nome")
-	private String Nome;
-	
-	@Size(max=10)
-	@Column(name="RG")
-	private String RG;
-	
-	@Basic(optional=false)
+	@Size(min = 1, max = 350)
+	@Column(name = "Nome")
+	private String nome;
+	@Basic(optional = false)
 	@NotNull
-	@Size(min=1, max=11)
-	@Column(name="CPF")
-	private String CPF;
-	
-	@OneToOne(optional=false)
-	@JoinColumn(name="Id", referencedColumnName="Id", insertable=false, updatable=false)
+	@Size(min = 1, max = 11)
+	@Column(name = "CPF")
+	private String cpf;
+	@Size(max = 10)
+	@Column(name = "RG")
+	private String rg;
+	@JoinColumn(name = "Id", referencedColumnName = "Id", insertable = false, updatable = false)
+	@OneToOne(optional = false)
 	private Pessoa pessoa;
 
+	public PessoaFisica() {
+	}
+
+	public PessoaFisica(Long id) {
+			this.id = id;
+	}
+
+	public PessoaFisica(Long id, String nome, String cpf) {
+			this.id = id;
+			this.nome = nome;
+			this.cpf = cpf;
+	}
+
 	public Long getId() {
-		return Id;
+			return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+			this.id = id;
 	}
 
 	public String getNome() {
-		return Nome;
+			return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+			this.nome = nome;
 	}
 
-	public String getRG() {
-		return RG;
+	public String getCpf() {
+			return cpf;
 	}
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setCpf(String cpf) {
+			this.cpf = cpf;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public String getRg() {
+			return rg;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setRg(String rg) {
+			this.rg = rg;
 	}
 
 	public Pessoa getPessoa() {
-		return pessoa;
+			return pessoa;
 	}
 
 	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+			this.pessoa = pessoa;
 	}
-	
-	public PessoaFisica() {
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof PessoaFisica)) {
+					return false;
+			}
+			PessoaFisica other = (PessoaFisica) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.PessoaFisica[ id=" + id + " ]";
 	}
 }

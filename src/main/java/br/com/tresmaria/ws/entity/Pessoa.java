@@ -15,67 +15,111 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Pessoa")
 public class Pessoa {
-	
+
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Basic(optional=false)
-	@Column(name="Id")
-	private long Id;
-	
-	@JoinColumn(name="IdSexo", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private Sexo IdSexo;
-	
-	@JoinColumn(name="IdEndereco", referencedColumnName="Id")
-	@ManyToOne(optional=false)
-	private Endereco IdEndereco;
-	
-	@OneToOne(cascade=CascadeType.ALL, mappedBy="pessoa")
-	private PessoaFisica pessoaFisica;
-	
-	@OneToOne(cascade=CascadeType.ALL, mappedBy="pessoa")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "Id")
+	private Long id;
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "DataHoraCadastro")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataHoraCadastro;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
 	private PessoaJuridica pessoaJuridica;
-	
-	public long getId() {
-		return Id;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
+	private PessoaFisica pessoaFisica;
+	@JoinColumn(name = "IdEndereco", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private Endereco idEndereco;
+	@JoinColumn(name = "IdSexo", referencedColumnName = "Id")
+	@ManyToOne(optional = false)
+	private Sexo idSexo;
+
+	public Pessoa() {
 	}
 
-	public void setId(long id) {
-		Id = id;
+	public Pessoa(Long id) {
+			this.id = id;
 	}
 
-	public Sexo getIdSexo() {
-		return IdSexo;
+	public Pessoa(Long id, Date dataHoraCadastro) {
+			this.id = id;
+			this.dataHoraCadastro = dataHoraCadastro;
 	}
 
-	public void setIdSexo(Sexo idSexo) {
-		IdSexo = idSexo;
+	public Long getId() {
+			return id;
 	}
 
-	public Endereco getIdEndereco() {
-		return IdEndereco;
+	public void setId(Long id) {
+			this.id = id;
 	}
 
-	public void setIdEndereco(Endereco idEndereco) {
-		IdEndereco = idEndereco;
+	public Date getDataHoraCadastro() {
+			return dataHoraCadastro;
 	}
 
-	public PessoaFisica getPessoaFisica() {
-		return pessoaFisica;
-	}
-
-	public void setPessoaFisica(PessoaFisica pessoaFisica) {
-		this.pessoaFisica = pessoaFisica;
+	public void setDataHoraCadastro(Date dataHoraCadastro) {
+			this.dataHoraCadastro = dataHoraCadastro;
 	}
 
 	public PessoaJuridica getPessoaJuridica() {
-		return pessoaJuridica;
+			return pessoaJuridica;
 	}
 
 	public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
-		this.pessoaJuridica = pessoaJuridica;
+			this.pessoaJuridica = pessoaJuridica;
 	}
-	
-	public Pessoa() {
+
+	public PessoaFisica getPessoaFisica() {
+			return pessoaFisica;
+	}
+
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
+			this.pessoaFisica = pessoaFisica;
+	}
+
+	public Endereco getIdEndereco() {
+			return idEndereco;
+	}
+
+	public void setIdEndereco(Endereco idEndereco) {
+			this.idEndereco = idEndereco;
+	}
+
+	public Sexo getIdSexo() {
+			return idSexo;
+	}
+
+	public void setIdSexo(Sexo idSexo) {
+			this.idSexo = idSexo;
+	}
+
+	@Override
+	public int hashCode() {
+			int hash = 0;
+			hash += (id != null ? id.hashCode() : 0);
+			return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+			// TODO: Warning - this method won't work in the case the id fields are not set
+			if (!(object instanceof Pessoa)) {
+					return false;
+			}
+			Pessoa other = (Pessoa) object;
+			if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+					return false;
+			}
+			return true;
+	}
+
+	@Override
+	public String toString() {
+			return "br.com.tresmaria.entity.Pessoa[ id=" + id + " ]";
 	}
 }
