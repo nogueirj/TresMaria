@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.tresmaria.ws.contract.IServicoService;
 import br.com.tresmaria.ws.entity.Servico;
 import br.com.tresmaria.ws.model.ServicoDto;
 import br.com.tresmaria.ws.projections.ServicoProjection;
 import br.com.tresmaria.ws.repository.ServicoRepository;
 
 @Service
-public class ServicoService {
+public class ServicoService implements IServicoService{
 
 	@Autowired
 	private ServicoRepository servicoRepository;

@@ -24,11 +24,6 @@ public class PessoaJuridica implements Serializable{
 	private Long id;
 	@Basic(optional = false)
 	@NotNull
-	@Size(min = 1, max = 300)
-	@Column(name = "NomeFantasia")
-	private String nomeFantasia;
-	@Basic(optional = false)
-	@NotNull
 	@Size(min = 1, max = 14)
 	@Column(name = "CNPJ")
 	private String cnpj;
@@ -46,9 +41,8 @@ public class PessoaJuridica implements Serializable{
 			this.id = id;
 	}
 
-	public PessoaJuridica(Long id, String nomeFantasia, String cnpj) {
+	public PessoaJuridica(Long id, String cnpj) {
 			this.id = id;
-			this.nomeFantasia = nomeFantasia;
 			this.cnpj = cnpj;
 	}
 
@@ -58,14 +52,6 @@ public class PessoaJuridica implements Serializable{
 
 	public void setId(Long id) {
 			this.id = id;
-	}
-
-	public String getNomeFantasia() {
-			return nomeFantasia;
-	}
-
-	public void setNomeFantasia(String nomeFantasia) {
-			this.nomeFantasia = nomeFantasia;
 	}
 
 	public String getCnpj() {

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Pessoa")
@@ -33,6 +34,11 @@ public class Pessoa implements Serializable{
 	@Column(name = "DataHoraCadastro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraCadastro;
+	@Basic(optional=false)
+	@NotNull
+	@Size(min=1, max=350)
+	@Column(name="NomeRazaoSocial")
+	private String nomeRazaoSocial;
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
 	private PessoaJuridica pessoaJuridica;
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
@@ -102,6 +108,14 @@ public class Pessoa implements Serializable{
 
 	public void setIdSexo(Sexo idSexo) {
 			this.idSexo = idSexo;
+	}
+
+	public String getNomeRazaoSocial() {
+		return nomeRazaoSocial;
+	}
+
+	public void setNomeRazaoSocial(String nomeRazaoSocial) {
+		this.nomeRazaoSocial = nomeRazaoSocial;
 	}
 
 	@Override

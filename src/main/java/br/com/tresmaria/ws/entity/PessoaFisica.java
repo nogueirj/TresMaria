@@ -24,11 +24,6 @@ public class PessoaFisica implements Serializable{
 	private Long id;
 	@Basic(optional = false)
 	@NotNull
-	@Size(min = 1, max = 350)
-	@Column(name = "Nome")
-	private String nome;
-	@Basic(optional = false)
-	@NotNull
 	@Size(min = 1, max = 11)
 	@Column(name = "CPF")
 	private String cpf;
@@ -46,9 +41,8 @@ public class PessoaFisica implements Serializable{
 			this.id = id;
 	}
 
-	public PessoaFisica(Long id, String nome, String cpf) {
+	public PessoaFisica(Long id, String cpf) {
 			this.id = id;
-			this.nome = nome;
 			this.cpf = cpf;
 	}
 
@@ -58,14 +52,6 @@ public class PessoaFisica implements Serializable{
 
 	public void setId(Long id) {
 			this.id = id;
-	}
-
-	public String getNome() {
-			return nome;
-	}
-
-	public void setNome(String nome) {
-			this.nome = nome;
 	}
 
 	public String getCpf() {

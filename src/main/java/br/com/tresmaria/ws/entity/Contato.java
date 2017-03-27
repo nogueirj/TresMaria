@@ -39,6 +39,9 @@ public class Contato implements Serializable{
 	@JoinColumn(name = "IdTelefoneContato", referencedColumnName = "Id")
 	@ManyToOne(optional = false)
 	private TelefoneContato idTelefoneContato;
+	@JoinColumn(name="IdPessoa", referencedColumnName= "Id")
+	@ManyToOne(optional=false)
+	private Pessoa idPessoa;
 
 	public Contato() {
 	}
@@ -83,6 +86,14 @@ public class Contato implements Serializable{
 
 	public void setIdTelefoneContato(TelefoneContato idTelefoneContato) {
 			this.idTelefoneContato = idTelefoneContato;
+	}
+
+	public Pessoa getIdPessoa() {
+		return idPessoa;
+	}
+
+	public void setIdPessoa(Pessoa idPessoa) {
+		this.idPessoa = idPessoa;
 	}
 
 	@Override
