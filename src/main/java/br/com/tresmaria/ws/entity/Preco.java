@@ -37,6 +37,9 @@ public class Preco implements Serializable{
 	@Column(name = "DataHoraCadastro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraCadastro;
+	@Column(name = "DataHoraFimVigencia")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataHoraFimVigencia;
 	@JoinColumn(name = "IdServico", referencedColumnName = "Id")
 	@ManyToOne(optional = false)
 	private Servico idServico;
@@ -84,6 +87,14 @@ public class Preco implements Serializable{
 
 	public void setIdServico(Servico idServico) {
 			this.idServico = idServico;
+	}
+
+	public Date getDataHoraFimVigencia() {
+		return dataHoraFimVigencia;
+	}
+
+	public void setDataHoraFimVigencia(Date dataHoraFimVigencia) {
+		this.dataHoraFimVigencia = dataHoraFimVigencia;
 	}
 
 	@Override

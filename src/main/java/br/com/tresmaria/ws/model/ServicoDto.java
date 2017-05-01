@@ -1,6 +1,8 @@
 package br.com.tresmaria.ws.model;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Optional;
 
 import javax.validation.constraints.Min;
 
@@ -15,4 +17,8 @@ public class ServicoDto {
 	
 	@Min(value=1, message="Valor tem que ser maior que R$ 1,00.Valor tem que ser maior que R$ 1,00.")
 	public BigDecimal valor;
+
+	public Optional<Long> idPreco;
+
+	public Collection<PrecoDto> precos;
 }
