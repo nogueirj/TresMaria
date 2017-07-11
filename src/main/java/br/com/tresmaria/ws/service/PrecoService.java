@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.tresmaria.ws.entity.Preco;
 import br.com.tresmaria.ws.repository.PrecoRepository;
+import java.util.List;
 
 @Service
 public class PrecoService implements IPrecoService{
@@ -41,4 +42,9 @@ public class PrecoService implements IPrecoService{
 				.findAny()
 				.get();
 	}
+        
+        public List<Preco> buscarRange(Collection<Long> ids){
+            Iterable s = ids;            
+            return precoRepository.findAll(s);
+        }
 }

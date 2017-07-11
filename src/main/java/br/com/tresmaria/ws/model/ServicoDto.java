@@ -20,5 +20,7 @@ public class ServicoDto {
 
 	public Optional<Long> idPreco;
 
+        public Collection<Long> IdsPrecos;
+        
 	public Collection<PrecoDto> precos;
 }
