@@ -1,9 +1,15 @@
 package br.com.tresmaria.ws.contract;
 
 import br.com.tresmaria.ws.model.CidadeDto;
+import java.util.List;
 
 public interface ICidadeService {
-  public void salvar(CidadeDto dto);
-  public void alterar(CidadeDto dto);
-  public void excluir(Longong Id);
+
+    void salvar(CidadeDto dto);
+
+    void alterar(CidadeDto dto);
+
+    void excluir(Long Id);
+
+    List<CidadeDto> listar();
 }

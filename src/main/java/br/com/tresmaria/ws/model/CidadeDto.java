@@ -9,4 +9,6 @@ public class CidadeDto {
 	public String estado;
 	
 	public String UF;
+        
+        public Long idEstado;
 }
