@@ -13,7 +13,6 @@ import br.com.tresmaria.ws.entity.Servico;
 import br.com.tresmaria.ws.model.ServicoDto;
 import br.com.tresmaria.ws.projections.ServicoProjection;
 import br.com.tresmaria.ws.repository.ServicoRepository;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Service
 public class ServicoService implements IServicoService{
@@ -59,6 +58,6 @@ public class ServicoService implements IServicoService{
 	}
         
         public ServicoDto alterar(ServicoDto servico){
-            throw new NotImplementedException();
+            throw new UnsupportedOperationException();
         }
 }
