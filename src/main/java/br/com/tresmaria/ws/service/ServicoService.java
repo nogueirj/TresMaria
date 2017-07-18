@@ -13,6 +13,7 @@ import br.com.tresmaria.ws.entity.Servico;
 import br.com.tresmaria.ws.model.ServicoDto;
 import br.com.tresmaria.ws.projections.ServicoProjection;
 import br.com.tresmaria.ws.repository.ServicoRepository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Service
 public class ServicoService implements IServicoService{
@@ -44,8 +45,8 @@ public class ServicoService implements IServicoService{
 	}
 	
         @Override
-	public void remover(Servico servico){
-		servicoRepository.delete(servico);
+	public void remover(ServicoDto servico){
+		servicoRepository.delete(servico.id);
 	}
 	
         @Override
@@ -56,4 +57,8 @@ public class ServicoService implements IServicoService{
 				.findFirst()
 				.get();
 	}
+        
+        public ServicoDto alterar(ServicoDto servico){
+            throw new NotImplementedException();
+        }
 }
