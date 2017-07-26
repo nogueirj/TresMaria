@@ -45,7 +45,7 @@ public class ServicoController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ServicoDto> alterar(@RequestBody ServicoDto servico) {
-        ServicoDto servicoCadastrado = servicoService.(servico);
+        ServicoDto servicoCadastrado = servicoService.alterar(servico);
         return new ResponseEntity<ServicoDto>(servicoCadastrado, HttpStatus.OK);
     }
 
