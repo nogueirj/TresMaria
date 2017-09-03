@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.function.Function;
+import org.springframework.stereotype.Controller;
 
 /**
  * Created by julionogueira on 06/04/17.
  */
+@Controller
 public class PrecoFactory {
 
     @Autowired

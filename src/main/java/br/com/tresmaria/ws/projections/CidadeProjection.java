@@ -8,11 +8,13 @@ package br.com.tresmaria.ws.projections;
 import br.com.tresmaria.ws.entity.Cidade;
 import br.com.tresmaria.ws.model.CidadeDto;
 import java.util.function.Function;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author julionogueira
  */
+@Controller
 public class CidadeProjection {
     public Function<Cidade, CidadeDto> projection = (Cidade cidade) -> {
         CidadeDto dto = new CidadeDto();

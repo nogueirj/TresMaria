@@ -57,7 +57,14 @@ public class ServicoService implements IServicoService{
 				.get();
 	}
         
-        public ServicoDto alterar(ServicoDto servico){
-            throw new UnsupportedOperationException();
+        public ServicoDto alterar(ServicoDto servicoDto){
+            Servico servico = servicoRepository.findOne(servicoDto.id);
+            servico.setDescricao(servicoDto.descricao);
+            servicoRepository.saveAndFlush(servico);
+            return Stream
+                    .of(servico)
+                    .map(projetor.project)
+                    .findFirst()
+                    .get();
         }
 }

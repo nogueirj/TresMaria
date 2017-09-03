@@ -41,7 +41,7 @@ public class ServicoController {
     
     @RequestMapping(
             value = "/alterar-servico",
-            method = RequestMethod.POST,
+            method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ServicoDto> alterar(@RequestBody ServicoDto servico) {

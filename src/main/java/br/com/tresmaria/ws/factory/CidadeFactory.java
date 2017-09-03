@@ -11,11 +11,13 @@ import br.com.tresmaria.ws.model.CidadeDto;
 import br.com.tresmaria.ws.repository.EstadoRepository;
 import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author julionogueira
  */
+@Controller
 public class CidadeFactory {
     
     @Autowired

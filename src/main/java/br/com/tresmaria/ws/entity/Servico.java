@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,14 +25,17 @@ public class Servico implements Serializable{
 	@Basic(optional = false)
 	@Column(name = "Id")
 	private Long id;
+	
 	@Basic(optional = false)
 	@NotNull
 	@Size(min = 1, max = 300)
 	@Column(name = "Descricao")
 	private String descricao;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idServico")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idServico", fetch=FetchType.EAGER)
 	private Collection<ContatoXServico> contatoXServicoCollection;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idServico")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idServico", fetch=FetchType.EAGER)
 	private Collection<Preco> precoCollection;
 
 	public Servico() {

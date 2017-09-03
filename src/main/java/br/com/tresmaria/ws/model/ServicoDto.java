@@ -15,12 +15,12 @@ public class ServicoDto {
 	@NotBlank(message="Descrição não pode ser vazio.")
 	public String descricao;
 	
-	@Min(value=1, message="Valor tem que ser maior que R$ 1,00.Valor tem que ser maior que R$ 1,00.")
+	@Min(value=1, message="Valor tem que ser maior que R$ 1,00.")
 	public BigDecimal valor;
 
 	public Optional<Long> idPreco;
 
-        public Collection<Long> IdsPrecos;
+    public Collection<Long> IdsPrecos;
         
 	public Collection<PrecoDto> precos;
 }

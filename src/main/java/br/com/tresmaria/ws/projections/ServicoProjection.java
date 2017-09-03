@@ -17,29 +17,27 @@ import br.com.tresmaria.ws.model.ServicoDto;
 @Controller
 public class ServicoProjection{
 	
-	public Function<Servico, ServicoDto> project = new Function<Servico, ServicoDto>() {
+	@Autowired
+	private PrecoProjection projection;
+	
+	public Function<Servico, ServicoDto> project = (Servico servico) -> {
 
-		@Autowired
-		private PrecoProjection projection;
-
-		@Override
-		public ServicoDto apply(Servico t) {
 			ServicoDto dto = new ServicoDto();
-			dto.id = t.getId();
-			dto.descricao = t.getDescricao();
-			Preco p = t.getPrecoCollection()
+			dto.id = servico.getId();
+			dto.descricao = servico.getDescricao();
+			Preco p = servico.getPrecoCollection()
 					.stream()
-					.filter(x -> x.getDataHoraCadastro().after(new Date())  && x.getDataHoraFimVigencia().before(new Date()))
+					.filter(x -> x.getDataHoraCadastro().before(new Date()))
 					.findAny()
 					.get();
 
 			dto.valor = p.getValor();
-			dto.idPreco = Optional.of(p.getId());
-			dto.precos = t.getPrecoCollection()
+			dto.idPreco = Optional.ofNullable(p.getId());
+			dto.precos = servico.getPrecoCollection()
 					.stream()
 					.map(projection.project)
 					.collect(Collectors.<PrecoDto> toList());
+			dto.IdsPrecos = servico.getPrecoCollection().stream().map(Preco::getId).collect(Collectors.toList());
 			return dto;
-		}
 	};
 }
