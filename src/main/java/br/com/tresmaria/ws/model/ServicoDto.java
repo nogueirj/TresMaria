@@ -23,4 +23,6 @@ public class ServicoDto {
     public Collection<Long> IdsPrecos;
         
 	public Collection<PrecoDto> precos;
+
+	public String SituacaoAtual;
 }
