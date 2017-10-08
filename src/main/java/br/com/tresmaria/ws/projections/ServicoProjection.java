@@ -30,7 +30,7 @@ public class ServicoProjection{
 					.filter(x -> x.getDataHoraCadastro().before(new Date()))
 					.findAny()
 					.get();
-
+			dto.SituacaoAtual = servico.IdSituacao.toString();
 			dto.valor = p.getValor();
 			dto.idPreco = Optional.ofNullable(p.getId());
 			dto.precos = servico.getPrecoCollection()
