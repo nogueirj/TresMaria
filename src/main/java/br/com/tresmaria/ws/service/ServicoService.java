@@ -15,7 +15,7 @@ import br.com.tresmaria.ws.projections.ServicoProjection;
 import br.com.tresmaria.ws.repository.ServicoRepository;
 
 @Service
-public class ServicoService implements IServicoService{
+public class ServicoService implements IServicoService {
 
 	@Autowired
 	private ServicoRepository servicoRepository;
@@ -23,48 +23,41 @@ public class ServicoService implements IServicoService{
 	private ServicoFactory servicoFactory;
 	@Autowired
 	private ServicoProjection projetor;
-	
-        @Override
-	public ServicoDto salvar(ServicoDto servico){
+
+	@Override
+	public ServicoDto salvar(ServicoDto servico) {
 		Servico s = Stream.of(servico).map(servicoFactory.factory).findAny().get();
-		return Stream.of(servicoRepository.saveAndFlush(s))
-				.map(projetor.project)
-				.findAny()
-				.get();
+		return Stream.of(servicoRepository.saveAndFlush(s)).map(projetor.project).findAny().get();
 	}
-	
-        @Override
-	public Collection<ServicoDto> listar(){
-		Collection<ServicoDto> servicos = servicoRepository
-				.findAll()
-				.stream()
-				.map(projetor.project)
-				.collect(Collectors.<ServicoDto> toList());
+
+	@Override
+	public Collection<ServicoDto> listar() {
+		Collection<ServicoDto> servicos = servicoRepository.findAll().stream().map(projetor.project)
+				.collect(Collectors.<ServicoDto>toList());
 		return servicos;
 	}
-	
-        @Override
-	public void remover(ServicoDto servico){
+
+	@Override
+	public void remover(ServicoDto servico) {
 		servicoRepository.delete(servico.id);
 	}
-	
-        @Override
-	public ServicoDto buscar(long idservico){
-		return Stream
-				.of(servicoRepository.findOne(idservico))
-				.map(projetor.project)
-				.findFirst()
-				.get();
+
+	@Override
+	public ServicoDto buscar(long idservico) {
+		return Stream.of(servicoRepository.findOne(idservico)).map(projetor.project).findFirst().get();
 	}
-        
-        public ServicoDto alterar(ServicoDto servicoDto){
-            Servico servico = servicoRepository.findOne(servicoDto.id);
-            servico.setDescricao(servicoDto.descricao);
-            servicoRepository.saveAndFlush(servico);
-            return Stream
-                    .of(servico)
-                    .map(projetor.project)
-                    .findFirst()
-                    .get();
-        }
+
+	@Override
+	public ServicoDto alterar(ServicoDto servicoDto) {
+		Servico servico = servicoRepository.findOne(servicoDto.id);
+		servico.setDescricao(servicoDto.descricao);
+		servicoRepository.saveAndFlush(servico);
+		return Stream.of(servico).map(projetor.project).findFirst().get();
+	}
+	
+	@Override
+	public boolean existe(ServicoDto servicoDto){
+		 return servicoRepository.exists(servicoDto.id);
+	}
+
 }

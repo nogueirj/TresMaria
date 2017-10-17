@@ -12,4 +12,8 @@ public interface IServicoService {
 	void remover(ServicoDto servico);
 	
 	ServicoDto buscar(long idServico); 
+	
+	ServicoDto alterar(ServicoDto servicoDto);
+	
+	boolean existe(ServicoDto servicoDto);
 }

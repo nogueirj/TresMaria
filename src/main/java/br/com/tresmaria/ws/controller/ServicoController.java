@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tresmaria.ws.model.ServicoDto;
 import br.com.tresmaria.ws.service.ServicoService;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class ServicoController {
@@ -48,5 +48,17 @@ public class ServicoController {
         ServicoDto servicoCadastrado = servicoService.alterar(servico);
         return new ResponseEntity<ServicoDto>(servicoCadastrado, HttpStatus.OK);
     }
-
+    
+    @RequestMapping(
+    		value = "/excluir-servico",
+    		method = RequestMethod.DELETE)
+    public ResponseEntity<Void> remover(long idServico){
+    	ServicoDto servico = servicoService.buscar(idServico);
+    	if(servico != null){
+    	servicoService.remover(servico); 
+    	return new ResponseEntity<Void>(HttpStatus.OK);
+    	}else{
+    		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+    	}
+    }
 }
