@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import br.com.tresmaria.ws.factory.ServicoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import br.com.tresmaria.ws.contract.IServicoService;
@@ -18,7 +19,7 @@ import br.com.tresmaria.ws.repository.ServicoRepository;
 public class ServicoService implements IServicoService {
 
 	@Autowired
-	private ServicoRepository servicoRepository;
+	private JpaRepository<Servico, Long> servicoRepository;
 	@Autowired
 	private ServicoFactory servicoFactory;
 	@Autowired
